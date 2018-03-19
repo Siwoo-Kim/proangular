@@ -1,0 +1,60 @@
+<div class="navbar bg-dark text-white">
+  <a class="navbar-brand text-white">Sports Store</a>
+</div>
+<div class="row">
+  <div class="col-3 p-1">
+    <button class="btn btn-block btn-outline-primary"
+            [ngClass]="{active: !selectedCategory}"
+            (click)="onChangeCategory()"
+    >
+      Home
+    </button>
+    <button class="btn btn-block btn-outline-primary"
+            *ngFor="let category of categories"
+            [ngClass]="{active: selectedCategory == category}"
+            (click)="onChangeCategory(category)">
+      {{ category }}
+    </button>
+  </div>
+  <div class="col-9 p-1">
+    <div class="card border-primary"
+         *ngFor="let product of products"
+    >
+      <h4 class="card-header">
+        {{ product.name }}
+        <span class="pull-right">
+          <button class="btn btn-sm btn-outline-primary" [disabled]="true">
+            {{ product.price | currency : 'USD' : 'symbol' : '2.2-2' }}
+          </button>
+        </span>
+      </h4>
+      <div class="card-text p-1"> {{ product.description }}</div>
+    </div>
+    <div class="form-inline pull-left m-1">
+      <select class="form-control"
+              [value]="perPage"
+              (change)="onChangePerPage($event.target.value)">
+        <option value="3">3 per page</option>
+        <option value="4">4 per page</option>
+        <option value="6">6 per page</option>
+        <option value="8">8 per page</option>
+      </select>
+    </div>
+    <div class="btn-group pull-right" role="group">
+      <!--
+        <button *ngFor="let page of pageNumber"
+              class="btn btn-outline-primary"
+              [ngClass]="{active: page == currentPage}"
+              (click)="onChangePage(page)">
+        {{ page }}
+      </button>
+     -->
+      <button *counter="let page of pageCount"
+              class="btn btn-outline-primary"
+              [ngClass]="{active: page == currentPage}"
+              (click)="onChangePage(page)">
+        {{ page }}
+      </button>
+    </div>
+  </div>
+</div>
