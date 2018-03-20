@@ -1,12 +1,12 @@
 <div class="navbar bg-dark text-white">
   <a class="navbar-brand text-white">Sports Store</a>
+  <cart-summary></cart-summary>
 </div>
 <div class="row">
   <div class="col-3 p-1">
     <button class="btn btn-block btn-outline-primary"
             [ngClass]="{active: !selectedCategory}"
-            (click)="onChangeCategory()"
-    >
+            (click)="onChangeCategory()">
       Home
     </button>
     <button class="btn btn-block btn-outline-primary"
@@ -18,8 +18,7 @@
   </div>
   <div class="col-9 p-1">
     <div class="card border-primary"
-         *ngFor="let product of products"
-    >
+         *ngFor="let product of products">
       <h4 class="card-header">
         {{ product.name }}
         <span class="pull-right">
@@ -28,7 +27,12 @@
           </button>
         </span>
       </h4>
-      <div class="card-text p-1"> {{ product.description }}</div>
+      <div class="card-text p-1"> {{ product.description }}
+        <button class="btn btn-success btn-sm pull-right"
+                (click)="addProduct(product)">
+          Add to cart
+        </button>
+      </div>
     </div>
     <div class="form-inline pull-left m-1">
       <select class="form-control"
