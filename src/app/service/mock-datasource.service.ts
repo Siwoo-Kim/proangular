@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Product} from "../model/Product.model";
 import "rxjs/Rx";
 import {Observable} from "rxjs/Observable";
+import {Order} from "../model/Order.model";
 
   /*  Mock DataSource which contains dummy data.  */
 @Injectable()
@@ -30,4 +31,8 @@ export class MockDatasource{
     return Observable.from( [this.products] );
   }
 
+  saveOrder(order: Order): Observable<Order> {
+    console.log(JSON.stringify(order,null,2));
+    return Observable.from([order]);
+  }
 }
