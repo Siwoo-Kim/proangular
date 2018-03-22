@@ -6,6 +6,7 @@ import {OrderRepository} from "./order-repository.service";
 import {Order} from "../model/Order.model";
 import {RestDatasource} from "./rest-datasource.service";
 import {HttpModule} from "@angular/http";
+import {AuthService} from "./auth.service";
 
 /*
    This module declare service module and the model
@@ -19,12 +20,15 @@ import {HttpModule} from "@angular/http";
     HttpModule,
   ],
   providers: [
+    /*  Util  */
+    AuthService,
     /*  Repository api  */
     ProductRepository,
     OrderRepository,
     /*  Datasource api  */
     //MockDatasource,
     {provide: MockDatasource, useClass: RestDatasource},
+    RestDatasource,
     /*  Model */
     Cart,
     Order,

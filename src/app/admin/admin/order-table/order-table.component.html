@@ -1,0 +1,46 @@
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox"
+           class="form-check-input"
+           [(ngModel)]="includeShipped">
+      Display Shipped Orders
+  </label>
+</div>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Zip</th>
+      <th colspan="2">Cart</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="orderRepository.isEmpty()">
+      <td colspan="5">No Orders</td>
+    </tr>
+    <tr  *ngFor="let order of getOrders()">
+      <td>{{ order.name }}</td>
+      <td>{{ order.zip }}</td>
+      <th>Product</th>
+      <th>Quantity</th>
+      <td>
+        <button class="btn btn-warning"
+                (click)="markShipped(order)">
+          Ship
+        </button>
+        <button class="btn btn-warning"
+                (click)="delete(order.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+    <tr *ngFor="let item of order.cart.items">
+      <td colspan="2"></td>
+      <td>{{ item.product.name }}</td>
+      <td>{{ item.quantity }}</td>
+    </tr>
+  </tbody>
+
+</table>

@@ -11,9 +11,13 @@
     </button>
     <button class="btn btn-block btn-outline-primary"
             *ngFor="let category of categories"
-            [ngClass]="{active: selectedCategory == category}"
+            [ngClass]="{ active: selectedCategory == category }"
             (click)="onChangeCategory(category)">
       {{ category }}
+    </button>
+    <button class="btn btn-block btn-outline-danger"
+            routerLink="/admin">
+      Admin
     </button>
   </div>
   <div class="col-9 p-1">

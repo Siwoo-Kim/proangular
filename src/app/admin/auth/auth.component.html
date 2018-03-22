@@ -1,20 +1,23 @@
-<div class="bg-info text-center p-1">
-  <a class="navbar-brand" >SportStore Admin</a>
+<div class="nav bg-dark p-1 text-center">
+  <a class="navbar-brand text-white"
+     routerLink="/store">
+    SportsStore Admin</a>
 </div>
-<div class="bg-danger m-1 p-1 text-center"
-     *ngIf="errorMessage"
->{{ errorMessage }}</div>
+<div class="bg-danger mt-1 p-1 text-center"
+     *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
 <div class="p-1">
   <form #f="ngForm"
-        novalidate
-        (ngSubmit)="authenticate(f)">
+        (ngSubmit)="authenticate(f)"
+        novalidate>
     <div class="form-group">
       <label>Name</label>
       <input type="text"
              class="form-control"
              name="username"
              [(ngModel)]="username"
-             required/>
+             required>
     </div>
     <div class="form-group">
       <label>Password</label>
@@ -22,11 +25,18 @@
              class="form-control"
              name="password"
              [(ngModel)]="password"
-             required/>
+             required>
     </div>
     <div class="text-center">
-      <button class="btn btn-secondary" routerLink="/">Go Back</button>
-      <button class="btn btn-primary" type="submit">Log in</button>
+      <button type="submit" class="btn btn-outline-secondary"
+              routerLink="/store">
+        Back to store
+      </button>
+      <button type="submit" class="btn btn-outline-primary"
+              [disabled]="f.invalid">
+        Login
+      </button>
     </div>
   </form>
 </div>
+
